@@ -1,0 +1,29 @@
+//ESTE PROGRAMA IMPRIME NO SERIAL QUAL LED ESTÁ ACESSO!!!
+int led = 13;
+int led2 = 12;
+
+void setup() {                
+  
+  pinMode(led, OUTPUT);  
+  pinMode(led2, OUTPUT);  
+  
+  Serial.begin(9600);
+
+  //ENQUANTO A PORTA SERIAL NÃO ESTIVER DISPONIVEL OQUE QUER QUE ACONTEÇA
+  while(!Serial)
+  {
+  }
+}
+
+void loop() {
+  //ACENDE O LED 1 + APAGA O LED 2 + IMPRIME NA TELA LED 1 ACESSO + AGUARDA 2 SEGUNDOS
+  digitalWrite(led, HIGH);
+  digitalWrite(led2, LOW);
+  Serial.println(F("LED 1 Acesso!"));
+  delay(2000);
+  //APAGA O LED 1 + ACENDE O LED 2 + IMPRIME NA TELA LED 2 ACESSO + AGUARDA 2 SEGUNDOS
+  digitalWrite(led, LOW);
+  digitalWrite(led2, HIGH);
+  Serial.println(F("LED 2 Acesso!"));
+  delay(2000);
+}
