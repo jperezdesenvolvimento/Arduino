@@ -1,4 +1,4 @@
-No sensor de verificação de cores:
+No sensor de verificação de cores TCRT5000:
 
 A0 - Entrada analógica, reconhece de 0 a 1024 por ser 8 bits
 D0 - Entrada digital -> limitado  a 0 e 1
