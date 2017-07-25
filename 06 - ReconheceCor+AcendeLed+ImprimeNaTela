@@ -1,0 +1,35 @@
+int verde = 8;
+int amarelo = 9;
+
+
+void setup()
+{
+    pinMode(verde, OUTPUT);  
+  pinMode(amarelo, OUTPUT); 
+  Serial.begin(9600);
+    while(!Serial)
+  {
+  }
+}
+
+void loop()
+{
+  int sensorValue = analogRead(A0);
+  
+  if(sensorValue>0 && sensorValue<150){
+    Serial.println("BRANCO detectado! ");
+    digitalWrite(amarelo, LOW);
+    digitalWrite(verde, HIGH);
+    
+  }else if (sensorValue>150 && sensorValue<900){
+    Serial.println("PRETO detectado! ");
+    digitalWrite(verde, LOW);
+    digitalWrite(amarelo, HIGH);
+
+  }else if(sensorValue>950) {
+  Serial.println("Aproxime uma cor! ");
+      digitalWrite(verde, HIGH);
+    digitalWrite(amarelo, HIGH);
+  }
+  delay(600);
+}
