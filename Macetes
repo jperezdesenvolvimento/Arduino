@@ -1,0 +1,8 @@
+No sensor de verificação de cores:
+
+A0 - Entrada analógica, reconhece de 0 a 1024 por ser 8 bits
+D0 - Entrada digital -> limitado  a 0 e 1
+VCC - 5V
+GND - Dados(GND)
+
+VER ARQUIVO -> RECONHECER COR COM 
