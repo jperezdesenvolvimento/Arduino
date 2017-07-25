@@ -12,3 +12,8 @@ O 1024 5V seria como uma entrada digital recebendo 11111111 8bits de 1
 O 0 0V seria como uma entrada digital recebendo 00000000 8 bits de 0
 
 VER ARQUIVO -> ReconhecerCoresComModuloTCRT5000
+
+
+Sensor LDR (Sensor de LUZ)
+LDR = Light Dependent Resistor
+Resistor
