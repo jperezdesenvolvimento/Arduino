@@ -1,0 +1,18 @@
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int sensorValue = analogRead(A0);
+  
+  if(sensorValue>0 && sensorValue<150){
+    Serial.println("BRANCO detectado! ");
+  }else if (sensorValue>150 && sensorValue<900){
+    Serial.println("PRETO detectado! ");
+  }else if(sensorValue>950) {
+  Serial.println("Aproxime uma cor! ");
+  }
+  delay(500);
+}
