@@ -6,6 +6,9 @@ VCC - 5V
 GND - Dados(GND)
 
 Caso ligado na entrada analógica, será reconhecido como de 0 a 1024, tendo como parâmetro 1024 sem receber nada.
-Se for ligado na entrada digital, será reconhecido como HI/LOW
+Se for ligado na entrada digital, será reconhecido como HI/LOW - 0 e 1
 
-VER ARQUIVO -> RECONHECER COR COM 
+O 1024 5V seria como uma entrada digital recebendo 11111111 8bits de 1
+O 0 0V seria como uma entrada digital recebendo 00000000 8 bits de 0
+
+VER ARQUIVO -> ReconhecerCoresComModulo
