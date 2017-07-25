@@ -5,4 +5,7 @@ D0 - Entrada digital -> limitado  a 0 e 1
 VCC - 5V
 GND - Dados(GND)
 
+Caso ligado na entrada analógica, será reconhecido como de 0 a 1024, tendo como parâmetro 1024 sem receber nada.
+Se for ligado na entrada digital, será reconhecido como HI/LOW
+
 VER ARQUIVO -> RECONHECER COR COM 
