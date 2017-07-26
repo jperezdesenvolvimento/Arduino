@@ -1,0 +1,51 @@
+int ldrMotorDireito = 1;
+int ldrMotorEsquerdo = 0;
+int ldrMotorDireitoValor = 1;
+int ldrMotorEsquerdoValor = 0;
+int ledMotorDireito = 8;
+int ledMotorEsquerdo = 9;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(ledMotorDireito, OUTPUT);
+  pinMode(ledMotorEsquerdo, OUTPUT);
+  while(!Serial)
+  {
+  }
+}
+
+void loop()
+{
+digitalWrite(ledMotorDireito, LOW);
+digitalWrite(ledMotorEsquerdo, LOW);
+
+ldrMotorEsquerdoValor = analogRead(ldrMotorEsquerdo);
+ldrMotorDireitoValor = analogRead (ldrMotorDireito);
+  
+  
+    if(ldrMotorEsquerdoValor>800 && ldrMotorDireitoValor>750)
+  {
+    digitalWrite(ledMotorEsquerdo, HIGH);
+    digitalWrite(ledMotorDireito, HIGH);
+    Serial.println("Dois Motores Ativos");
+  }
+  
+  else if (ldrMotorEsquerdoValor<800 && ldrMotorDireitoValor<800)
+  {
+    Serial.println("Motores Inativos");
+  }
+  
+    else if(ldrMotorEsquerdoValor<800 && ldrMotorDireitoValor>800)
+  {
+    digitalWrite(ledMotorDireito, HIGH);
+    Serial.println("Motor Direito Ativo");
+  }
+    else if(ldrMotorEsquerdoValor>800 && ldrMotorDireitoValor<800)
+  {
+    digitalWrite(ledMotorEsquerdo, HIGH);
+    Serial.println("Motor Esquerdo Ativo");
+  }
+
+  delay(1000);
+}
