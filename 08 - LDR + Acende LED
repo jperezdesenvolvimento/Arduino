@@ -1,0 +1,40 @@
+int ldr = 0;
+int ldrValue = 0;
+int atencao = 9;
+
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(atencao, OUTPUT);
+  while(!Serial)
+  {
+  }
+}
+
+void loop()
+{
+digitalWrite(atencao, LOW);
+ldrValue = analogRead(ldr);
+  
+  if(ldrValue>500 && ldrValue<800)
+  {
+    Serial.println("LUZ AMBIENTE");
+    Serial.println(ldrValue);
+  }
+  
+  else if (ldrValue>800)
+  {
+    Serial.println("LUZ ARTIFICIAL");
+    digitalWrite(atencao, HIGH);
+    Serial.println(ldrValue);
+  }
+  
+  else if (ldrValue<500)
+  {
+    Serial.println("SEM LUZ");
+    digitalWrite(atencao, HIGH);
+    Serial.println(ldrValue);
+  }
+  delay(1000);
+}
