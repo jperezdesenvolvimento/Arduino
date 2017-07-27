@@ -1,0 +1,50 @@
+int motorDireita = 6; 
+int motorEsquerda = 7;
+
+void setup()
+{
+  pinMode(motorDireita, OUTPUT);
+  pinMode(motorEsquerda, OUTPUT);
+  Serial.begin(9600);
+  while(!Serial)
+  {
+  }
+}
+
+void loop()
+{
+  int sensorDireita = analogRead(A2);
+  int sensorCentral = analogRead(A1);
+  int sensorEsquerda = analogRead(A0);
+  
+  //if (sensorDireita>300 && sensorEsquerda>300 && sensorCentral>300 )
+  //{
+  //  localizaLinhaPreta();
+  //}
+  
+  if(sensorDireita<300 && sensorEsquerda<300 && sensorCentral>300)
+  {
+    digitalWrite(motorEsquerda, HIGH);
+    digitalWrite(motorDireita, HIGH);
+  }
+  
+  else if (sensorDireita>300 && sensorEsquerda<300 && sensorCentral<300)
+  {
+    digitalWrite(motorEsquerda, HIGH);
+    digitalWrite(motorDireita, LOW);
+  }
+  
+  else if (sensorDireita<300 && sensorEsquerda>300 && sensorCentral<300)
+  {
+    digitalWrite(motorEsquerda, LOW);
+    digitalWrite(motorDireita, HIGH);
+  }
+  
+  Serial.print(sensorDireita);
+    Serial.print("  /  ");
+  Serial.print(sensorCentral);
+    Serial.print("  /  ");
+  Serial.println(sensorEsquerda);
+
+  delay(100);
+}
