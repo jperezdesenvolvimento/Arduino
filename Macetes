@@ -17,3 +17,7 @@ VER ARQUIVO -> ReconhecerCoresComModuloTCRT5000
 Sensor LDR (Sensor de LUZ)
 LDR = Light Dependent Resistor
 Resistor
+
+
+SERVOMOTOR 180º - MG 996R - 180º Fabricante TowerPro
+EXEMPLO: Arquivo/Examples/Serv/Sweep no Arduino IDE
