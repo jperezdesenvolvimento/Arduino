@@ -1,0 +1,74 @@
+#include <Servo.h>
+
+//Definition of the values and speed to make the wheels move
+//Definicao dos valores e velocidade para fazer as rodas se moverem
+#define roda_parada 90
+#define Roda_esquerda_frente 70 //max speed is 0
+#define Roda_esquerda_tras 110 //max speed is 180
+#define Roda_direita_frente 110 //max speed is 180
+#define Roda_direita_tras 70 //max speed is 0
+
+
+const int Pino_Servo_Roda_esquerda = 11;   //Servo da roda esquerda
+const int Pino_Servo_Roda_direita = 10;   //Servo da Roda direita
+
+//Create servo objects for each one
+  Servo Servo_roda_esquerda;
+  Servo Servo_roda_direita;
+ 
+  int servo_delay; //Time for the aervo to make his function
+
+void setup() {
+  // put your setup code here, to run once:
+
+  //Setup servos     
+   Servo_roda_esquerda.attach(Pino_Servo_Roda_esquerda);
+   Servo_roda_direita.attach(Pino_Servo_Roda_direita);
+
+    servo_delay = 20; //Time for the servo to make his function
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+Vira_esquerda();
+ delay(1000);
+ Vira_direita();
+ delay(1000);
+ Vai_pra_frente();
+ delay(1000);
+
+}
+
+
+//Stop function 
+  void Stop(){
+    Servo_roda_esquerda.write(roda_parada);//Stop left servo
+    delay(servo_delay);//we give time for the servo to act
+    Servo_roda_direita.write(roda_parada);//Stop right servo
+    delay(servo_delay);//we give time for the servo to act
+  }
+
+
+//Turn right function 
+  void Vira_direita()  {
+    Servo_roda_esquerda.write(Roda_esquerda_frente);//Run left servo
+    delay(servo_delay);//we give time for the servo to act
+    Servo_roda_direita.write(roda_parada);  //Stop right servo
+    delay(servo_delay);//we give time for the servo to act
+  }
+//Turn left function  
+  void Vira_esquerda(){     
+    Servo_roda_esquerda.write(roda_parada);//Stop left servo
+    delay(servo_delay);//we give time for the servo to act
+    Servo_roda_direita.write(Roda_direita_frente);  //Run right servo
+    delay(servo_delay);//we give time for the servo to act
+  }
+//Go forward function
+  void Vai_pra_frente()   {         
+    Servo_roda_esquerda.write(Roda_esquerda_frente);//Run left servo
+    delay(servo_delay);//we give time for the servo to act
+    Servo_roda_direita.write(Roda_direita_frente);  //Run right servo
+    delay(servo_delay);//we give time for the servo to act
+  }
