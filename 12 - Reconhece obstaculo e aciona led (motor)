@@ -26,23 +26,21 @@ void loop()
 
 if(cmMsec>15)
 {
-    digitalWrite(motorEsquerdo, HIGH);
-    digitalWrite(motorDireito, HIGH);
+  digitalWrite(motorEsquerdo, HIGH);
+  digitalWrite(motorDireito, HIGH);
+  Serial.println(" EM FRENTE ");
 }
 if(cmMsec<10){
   digitalWrite(motorEsquerdo, HIGH);
   digitalWrite(motorDireito, LOW);
-  Serial.print(", CM: ");
-  Serial.print(cmMsec);
-  Serial.println(" VIROU PARA ESQUERDA ");
+  Serial.print(" VIROU PARA ESQUERDA ");
+  Serial.println(cmMsec);
 }
-if(cmMsec>=10 && cmMsec<12){
+if(cmMsec>=10 && cmMsec<15){
   digitalWrite(motorEsquerdo, LOW);
   digitalWrite(motorDireito, HIGH);
-  Serial.print(", CM: ");
-  Serial.print(cmMsec);
-  Serial.println(" VIROU PARA DIREITA ");
+  Serial.print(" VIROU PARA DIREITA ");
+  Serial.println(cmMsec);
 }
-
   delay(100);
   }
