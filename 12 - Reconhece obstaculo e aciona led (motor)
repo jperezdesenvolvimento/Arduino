@@ -1,0 +1,48 @@
+#include <Ultrasonic.h>
+
+#define TRIGGER_PIN  7
+#define ECHO_PIN     6
+#define motorEsquerdo 8
+#define motorDireito 9
+
+Ultrasonic ultrasonic(TRIGGER_PIN, ECHO_PIN);
+
+void setup()
+  {
+    pinMode(motorEsquerdo, OUTPUT);
+    pinMode(motorDireito, OUTPUT);
+  Serial.begin(9600);
+  while(!Serial)
+  {
+  }
+  }
+
+void loop()
+  {
+  float cmMsec;
+  long microsec = ultrasonic.timing();
+
+  cmMsec = ultrasonic.convert(microsec, Ultrasonic::CM);
+
+if(cmMsec>15)
+{
+    digitalWrite(motorEsquerdo, HIGH);
+    digitalWrite(motorDireito, HIGH);
+}
+if(cmMsec<10){
+  digitalWrite(motorEsquerdo, HIGH);
+  digitalWrite(motorDireito, LOW);
+  Serial.print(", CM: ");
+  Serial.print(cmMsec);
+  Serial.println(" VIROU PARA ESQUERDA ");
+}
+if(cmMsec>=10 && cmMsec<12){
+  digitalWrite(motorEsquerdo, LOW);
+  digitalWrite(motorDireito, HIGH);
+  Serial.print(", CM: ");
+  Serial.print(cmMsec);
+  Serial.println(" VIROU PARA DIREITA ");
+}
+
+  delay(100);
+  }
