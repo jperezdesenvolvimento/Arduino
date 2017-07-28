@@ -21,3 +21,7 @@ Resistor
 
 SERVOMOTOR 180º - MG 996R - 180º Fabricante TowerPro
 EXEMPLO: Arquivo/Examples/Serv/Sweep no Arduino IDE
+
+
+CI Regulador de tensão 7805 -> Utilizado para regular tensão da bateria de 9V para 5V de saida.
+Ver imagem de Esquema elétrico de alimentação da bateria de 7,4V para servo motor.
