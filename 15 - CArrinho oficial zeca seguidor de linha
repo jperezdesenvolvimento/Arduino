@@ -1,0 +1,107 @@
+
+#include <Servo.h>
+
+//Definition of the values and speed to make the wheels move
+//Definicao dos valores e velocidade para fazer as rodas se moverem
+#define roda_parada 90
+#define Roda_esquerda_frente 110 //max speed is 0
+#define Roda_esquerda_tras 70 //max speed is 180
+#define Roda_direita_frente 70 //max speed is 180
+#define Roda_direita_tras 110 //max speed is 0
+
+const int Pino_Servo_Roda_esquerda = 11;   //Servo da roda esquerda
+const int Pino_Servo_Roda_direita = 10;   //Servo da Roda direita
+
+//Create servo objects for each one
+  Servo Servo_roda_esquerda;
+  Servo Servo_roda_direita;
+ 
+  int sensorDireita = 6;
+  int sensorCentral = 7;
+  int sensorEsquerda = 8;
+  
+  int servo_delay; //Time for the aervo to make his function
+
+void setup() {
+  
+  pinMode(sensorDireita, INPUT); 
+  pinMode(sensorCentral, INPUT); 
+  pinMode(sensorEsquerda, INPUT);
+  
+  // put your setup code here, to run once:
+  //Setup servos     
+   Servo_roda_esquerda.attach(Pino_Servo_Roda_esquerda);
+   Servo_roda_direita.attach(Pino_Servo_Roda_direita);
+
+   servo_delay = 20; //Time for the servo to make his function
+  Serial.begin(9600);
+    while(!Serial)
+  {
+  }
+}
+
+void loop() {
+  
+  
+  
+  if(digitalRead(sensorDireita) == 0 && digitalRead(sensorEsquerda) == 0 && digitalRead(sensorCentral) == 0)
+  {
+    pesquisaRota();
+  }else if(digitalRead(sensorDireita)==0 && digitalRead(sensorEsquerda)==0 && digitalRead(sensorCentral)==1)
+  {
+    Vai_pra_frente();
+  }  else if (digitalRead(sensorDireita)==1 && digitalRead(sensorEsquerda)==0 && digitalRead(sensorCentral)==0)
+  {
+    Vira_esquerda();
+  }else if (digitalRead(sensorDireita)==0 && digitalRead(sensorEsquerda)==1 && digitalRead(sensorCentral)==0)
+  {
+    Vira_direita();
+  }
+}
+
+//Stop function 
+  void Stop(){
+    Servo_roda_esquerda.write(roda_parada);//Stop left servo
+    delay(servo_delay);//we give time for the servo to act
+    Servo_roda_direita.write(roda_parada);//Stop right servo
+    delay(servo_delay);//we give time for the servo to act
+  }
+
+//Turn right function 
+  void Vira_direita()  {
+    Servo_roda_esquerda.write(Roda_esquerda_frente);//Run left servo
+    delay(servo_delay);//we give time for the servo to act
+    Servo_roda_direita.write(roda_parada);  //Stop right servo
+    delay(servo_delay);//we give time for the servo to act
+    Serial.println(" VIRA DIREITA ");
+  }
+//Turn left function  
+  void Vira_esquerda(){     
+    Servo_roda_esquerda.write(roda_parada);//Stop left servo
+    delay(servo_delay);//we give time for the servo to act
+    Servo_roda_direita.write(Roda_direita_frente);  //Run right servo
+    delay(servo_delay);//we give time for the servo to act
+      Serial.println(" VIRA ESQUERDA ");
+  }
+//Go forward function
+  void Vai_pra_frente()   {         
+    Servo_roda_esquerda.write(Roda_esquerda_frente);//Run left servo
+    delay(servo_delay);//we give time for the servo to act
+    Servo_roda_direita.write(Roda_direita_frente);  //Run right servo
+    delay(servo_delay);//we give time for the servo to act
+      Serial.println(" EM FRENTE ");
+  }
+
+//Turn right function 
+  void pesquisaRota()  {
+      Vai_pra_frente();
+      delay(random(0,3000));
+      Vira_esquerda();
+      delay(random(0,3000));
+      Vai_pra_frente();
+      delay(random(0,3000));
+      Vira_direita();
+      delay(random(0,3000));
+      Vai_pra_frente();
+      delay(random(0,3000));
+  }
